@@ -1,0 +1,17 @@
+pipeline {
+  agent any
+  stages {
+    stage('Build') {
+      steps {
+        sh 'docker build -t pizza-image .'
+      }
+    }
+    stage('Deploy') {
+      steps {
+        sh 'docker stop pizza-container || true'
+        sh 'docker rm pizza-container || true'
+        sh 'docker run -d -p 4000:80 --name pizza-container pizza-image'
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  corepizzaproject:
+    image: ${DOCKER_REGISTRY-}corepizzaproject
+    build:
+      context: .
+      dockerfile: corePizzaProject/Dockerfile
